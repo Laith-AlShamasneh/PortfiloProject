@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <h1 class="text-center mt-5 text-dark">Welcome admin: @User.Identity.Name</h1>
+}
+

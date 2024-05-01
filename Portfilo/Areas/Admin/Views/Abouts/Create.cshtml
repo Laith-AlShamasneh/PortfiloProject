@@ -1,0 +1,50 @@
+﻿@model About
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="h3 d-inline align-middle">Create</h1>
+        <a class="badge bg-dark text-white ms-2" href="/Admin/Home/Index">
+            /Home
+        </a>
+    </div>
+    <div class="col-auto">
+        <a asp-action="Index" class="btn btn-success"><i class="align-middle" data-feather="arrow-left"></i> Back to list</a>
+    </div>
+</div>
+
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h5 class="card-title text-center">Create New About</h5>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Brief" class="control-label"></label>
+                        <input asp-for="Brief" class="form-control" />
+                        <span asp-validation-for="Brief" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary w-50">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

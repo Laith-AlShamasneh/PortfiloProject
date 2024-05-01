@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="h3 d-inline align-middle">Project</h1>
+        <a class="badge bg-dark text-white ms-2" href="/Admin/Home/Index">
+            /Home
+        </a>
+    </div>
+    <div class="col-auto">
+        <a asp-action="Create" class="btn btn-success"><i class="align-middle" data-feather="plus"></i> Add New Project</a>
+    </div>
+</div>
+
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th class="text-center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="text-center">
+                    <img src="~/Images/Project/@item.Image" width="60px" alt="Header Image" />
+                </td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.ProjectId">
+                        <i class="align-middle mr-2" data-feather="edit-2"></i>
+                    </a>
+                    <a class="DeleteBtn" data-toggle="modal" data-target="#exampleModal" data-path="@Url.ActionLink("Index", "Projects", new { idDelete = item.ProjectId })">
+                        <i class="align-middle mr-2" data-feather="trash-2"></i>
+                    </a>
+                    @if (item.IsActive)
+                    {
+                        <a asp-action="Active" asp-route-id="@item.ProjectId">
+                            <i class="align-middle" data-feather="eye"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-action="Active" asp-route-id="@item.ProjectId">
+                            <i class="align-middle" data-feather="eye-off"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this project?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="DeleteCancel">Close</button>
+                <button type="button" class="btn btn-primary" id="DeleteConfirm">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+
+        var dataPath = "";
+        $(".DeleteBtn").click(function () {
+            dataPath = $(this).data("path");
+
+        });
+        $("#DeleteConfirm").click(function () {
+            window.location = dataPath;
+            dataPath = "";
+
+        });
+
+        $("#DeleteCancel").click(function () {
+            dataPath = "";
+        });
+
+    })
+</script>

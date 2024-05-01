@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TransactionContactUs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="h3 d-inline align-middle">Contact Us</h1>
+        <a class="badge bg-dark text-white ms-2" href="/Admin/Home/Index">
+            /Home
+        </a>
+    </div>
+</div>
+
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
